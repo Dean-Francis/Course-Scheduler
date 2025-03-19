@@ -1,0 +1,14 @@
+{
+  "name": "course-manager",
+  "version": "1.0.0",
+  "main": "script.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "author": "Dean Francis",
+  "license": "CUD",
+  "description": "",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
