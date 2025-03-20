@@ -8,7 +8,7 @@
   "author": "Dean Francis",
   "license": "CUD",
   "description": "",
-  "dependencies": {
+  "devDependencies": {
     "live-server": "^1.2.1"
   }
 }
