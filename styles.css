@@ -3,7 +3,7 @@ body {
     padding: 0;
     background-color: #ffffff;
     color: rgb(0, 0, 0);
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 .welcomeContainer {
     text-align: center;
@@ -48,18 +48,18 @@ button {
 }
 
 .sidebar-header {
-    background-color: red;
+    background-color: rgba(211, 7, 7, 0.842);
     color: white;
     text-align: center;
     width: 100%;
-    padding: 0px;
+    padding: 0.3%;
 }
 /* Sidebar Styles */
 .sidebar {
     width: 250px; /* Fixed width for the sidebar */
     background-color: #ffffff; /* Dark background for the sidebar */
     color: rgb(0, 0, 0); /* White text for contrast */
-    padding: 20px; /* Add padding inside the sidebar */
+    padding: 0; /* Add padding inside the sidebar */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.349); /* Add a subtle shadow */
 }
 
@@ -67,15 +67,21 @@ button {
     margin-top: 0; /* Remove default margin */
 }
 
+/*styles the whole list property*/
 .sidebar ul {
     list-style: none; /* Remove bullet points */
-    padding: 0; /* Remove default padding */
+    padding: 0;
+    margin: 0;
 }
 
+/* Style the items inside the sidebar */
 .sidebar ul li {
-    margin: 10px 0; /* Add spacing between links */
-}
+    margin: 10px 0;
+    border-bottom: 2px solid rgba(230, 230, 230, 0.5);
+    padding: 0 0 5px 10px;
+}   
 
+/* Style the links inside the sidebar */
 .sidebar ul li a {
     color: rgb(0, 0, 0); /* White text for links */
     text-decoration: none; /* Remove underline */
