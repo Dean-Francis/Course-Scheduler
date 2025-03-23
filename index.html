@@ -5,19 +5,59 @@
     </head>
         
     <body>
-        <h1> Welcome to Your Course Manager </h1> 
-        <h2> Add a Course </h2>
-        <form id="addCourseForm">
-            <label for="courseName">Course Name:</label>
-            <input type="text" id="courseName" name="courseName" required>
-            <label for="courseCode">Course Code:</label>
-            <input type="text" id="courseCode" name="courseCode" required>
-            <label for="courseInstructor">Course Instructor:</label>
-            <input type="text" id="courseInstructor" name="courseInstructor" required>
-            <label for="courseSemester">Course Semester:</label>
-            <input type="text" id="courseSemester" name="courseSemester" required>
-            <button type="submit">Add Course</button>
-        </form>
+        
+        <div class="container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h3>Navigation</h3>
+                </div>
+                    
+                <ul>
+                    <li><a href="#addCourseForm">Course Form</a></li>
+                    <li><a href="#timeTable">Time Table</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="welcomeContainer">
+                    <img src="cud_logo.png" alt="CUD Logo" class="logo">
+                    <p class="welcome">Course Manager</p>
+                </div>
+
+                <h2 id="addCourseForm">Add a Course</h2>
+                <form>
+                    <label for="courseName">Course Name:</label>
+                    <input type="text" id="courseName" name="courseName" required>
+                    <label for="courseCode">Course Code:</label>
+                    <input type="text" id="courseCode" name="courseCode" required>
+                    <label for="courseInstructor">Course Instructor:</label>
+                    <input type="text" id="courseInstructor" name="courseInstructor" required>
+                    <label for="courseSemester">Course Semester:</label>
+                    <input type="text" id="courseSemester" name="courseSemester" required>
+                    <label for="courseDay">Course Day:</label>
+                    <select id="courseDay" name="courseDay">
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                    <button type="submit">Add Time</button>
+                    <button type="submit">Add Course</button>
+                </form>
+
+                <h2 id="timeTable">Your Weekly Timetable</h2>
+                <div id="timeTable">
+                    <div class="day" id="Monday"><h3>Monday</h3></div>
+                    <div class="day" id="Tuesday"><h3>Tuesday</h3></div>
+                    <div class="day" id="Wednesday"><h3>Wednesday</h3></div>
+                    <div class="day" id="Thursday"><h3>Thursday</h3></div>
+                    <div class="day" id="Friday"><h3>Friday</h3></div>
+                </div>
+            </div>
+        </div>
 
         <!-- Move the script tag here -->
         <script src="script.js"></script>
