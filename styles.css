@@ -48,19 +48,20 @@ button {
 }
 
 .sidebar-header {
-    background-color: rgba(211, 7, 7, 0.842);
-    color: white;
-    text-align: center;
-    width: 100%;
-    padding: 0.3%;
+    background-color: rgba(211, 7, 7, 0.842); /* Red background */
+    color: white; /* White text */
+    text-align: center; /* Center-align text */
+    padding: 10px; /* Add padding inside the header */
 }
 /* Sidebar Styles */
 .sidebar {
     width: 250px; /* Fixed width for the sidebar */
-    background-color: #ffffff; /* Dark background for the sidebar */
-    color: rgb(0, 0, 0); /* White text for contrast */
-    padding: 0; /* Add padding inside the sidebar */
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.349); /* Add a subtle shadow */
+    background-color: #ffffff; /* Sidebar background */
+    color: rgb(0, 0, 0); /* Sidebar text color */
+    padding: 0; /* Remove padding */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.349); /* Subtle shadow */
+    height: 100vh; /* Ensure the sidebar spans the full height of the viewport */
+    box-sizing: border-box; /* Include padding and border in the width */
 }
 
 .sidebar h3 {
@@ -77,13 +78,13 @@ button {
 /* Style the items inside the sidebar */
 .sidebar ul li {
     margin: 10px 0;
-    border-bottom: 2px solid rgba(230, 230, 230, 0.5);
-    padding: 0 0 5px 10px;
+    border-bottom: 2px solid rgba(230, 230, 230, 0.5); /* Add a light gray line */
+    padding: 0 0 5px 10px; /* Add padding to the text */
 }   
 
 /* Style the links inside the sidebar */
 .sidebar ul li a {
-    color: rgb(0, 0, 0); /* White text for links */
+    color: rgb(0, 0, 0); /* Link text color */
     text-decoration: none; /* Remove underline */
 }
 
@@ -94,9 +95,16 @@ button {
 /* Main Content Styles */
 .main-content {
     flex: 1; /* Take up the remaining space */
-    padding: 20px; /* Add padding inside the main content */
+    padding: 0px; /* Add padding inside the main content */
 }
 
+.main-body {
+    padding: 20px; 
+}
+
+.courseTimeDay {
+    padding-top: 10px;
+}
 /* Timetable Styles */
 #timeTable {
     display: grid;

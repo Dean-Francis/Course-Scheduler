@@ -14,9 +14,10 @@
                 </div>
                     
                 <ul>
-                    <li><a href="Course Manager/index.html">Course Form</a></li>
-                    <li><a href="#timeTable">Time Table</a></li>
+                    <li><a href="index.html">Course Manager</a></li>
+                    <li><a href="Time_Table/time-table.html">Time Table</a></li>
                     <li><a href="Student_Schedule/student-schedule.html">Student Schedule</a></li>
+                    <li><a href="Taken-Courses/taken_courses.html">Taken Courses</a></li>
                 </ul>
             </div>
 
@@ -27,35 +28,45 @@
                     <p class="welcome">Course Manager</p>
                 </div>
 
-                <h2 id="addCourseForm">Add a Course</h2>
-                <form>
-                    <label for="courseName">Course Name:</label>
-                    <input type="text" id="courseName" name="courseName" required>
-                    <label for="courseCode">Course Code:</label>
-                    <input type="text" id="courseCode" name="courseCode" required>
-                    <label for="courseInstructor">Course Instructor:</label>
-                    <input type="text" id="courseInstructor" name="courseInstructor" required>
-                    <label for="courseSemester">Course Semester:</label>
-                    <input type="text" id="courseSemester" name="courseSemester" required>
-                    <label for="courseDay">Course Day:</label>
-                    <select id="courseDay" name="courseDay">
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                    </select>
-                    <button type="submit">Add Time</button>
-                    <button type="submit">Add Course</button>
-                </form>
+                <div class="main-body">
+                    <h2 id="addCourseForm">Add a Course</h2>
+                    <form>
+                        <label for="courseName">Course Name:</label>
+                        <input type="text" id="courseName" name="courseName" required>
+                        <label for="courseCode">Course Code:</label>
+                        <input type="text" id="courseCode" name="courseCode" required>
+                        <label for="courseInstructor">Course Instructor:</label>
+                        <input type="text" id="courseInstructor" name="courseInstructor" required>
+                        <label for="courseSemester">Credit Hours:</label>
+                        <input type="text" id="creditHours" name="creditHours" required>
+                        <button type="submit">Add Course</button>
+                    </form>
 
-                <h2 id="timeTable">Your Weekly Timetable</h2>
-                <div id="timeTable">
-                    <div class="day" id="Monday"><h3>Monday</h3></div>
-                    <div class="day" id="Tuesday"><h3>Tuesday</h3></div>
-                    <div class="day" id="Wednesday"><h3>Wednesday</h3></div>
-                    <div class="day" id="Thursday"><h3>Thursday</h3></div>
-                    <div class="day" id="Friday"><h3>Friday</h3></div>
+                        <div class="courseTimeDay">
+                            <form>
+                                <label for="courseTime">Course Timing:</label>
+                                <input type="time" id="courseTime" name="courseTime">
+                                <button type="submit">Add Time</button>
+                                <label for="courseDay">Course Day:</label>
+                            <select id="courseDay" name="courseDay">
+                                <option value="Monday">Monday</option>
+                                <option value="Tuesday">Tuesday</option>
+                                <option value="Wednesday">Wednesday</option>
+                                <option value="Thursday">Thursday</option>
+                                <option value="Friday">Friday</option>
+                            </select>
+                            <button type="submit">Add Day</button>
+                            </form>  
+                        </div>
+                        
+                    <h2 id="timeTable">Your Weekly Timetable</h2>
+                    <div id="timeTable">
+                        <div class="day" id="Monday"><h3>Monday</h3></div>
+                        <div class="day" id="Tuesday"><h3>Tuesday</h3></div>
+                        <div class="day" id="Wednesday"><h3>Wednesday</h3></div>
+                        <div class="day" id="Thursday"><h3>Thursday</h3></div>
+                        <div class="day" id="Friday"><h3>Friday</h3></div>
+                    </div>
                 </div>
             </div>
         </div>
