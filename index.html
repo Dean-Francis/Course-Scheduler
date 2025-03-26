@@ -29,49 +29,43 @@
                 </div>
 
                 <div class="main-body">
-                    <h2 id="addCourseForm">Add a Course</h2>
-                    <form>
+                    <h2>Add a Course</h2>
+                    <form id="addCourseForm">
                         <label for="courseName">Course Name:</label>
                         <input type="text" id="courseName" name="courseName" required>
                         <label for="courseCode">Course Code:</label>
                         <input type="text" id="courseCode" name="courseCode" required>
                         <label for="courseInstructor">Course Instructor:</label>
                         <input type="text" id="courseInstructor" name="courseInstructor" required>
-                        <label for="courseSemester">Credit Hours:</label>
+                        <label for="creditHours">Credit Hours:</label>
                         <input type="text" id="creditHours" name="creditHours" required>
                         <button type="submit">Add Course</button>
                     </form>
 
-                        <div class="courseTimeDay">
-                            <form>
-                                <label for="courseTime">Course Timing:</label>
-                                <input type="time" id="courseTime" name="courseTime">
-                                <button type="submit">Add Time</button>
-                                <label for="courseDay">Course Day:</label>
-                            <select id="courseDay" name="courseDay">
-                                <option value="Monday">Monday</option>
-                                <option value="Tuesday">Tuesday</option>
-                                <option value="Wednesday">Wednesday</option>
-                                <option value="Thursday">Thursday</option>
-                                <option value="Friday">Friday</option>
-                            </select>
-                            <button type="submit">Add Day</button>
-                            </form>  
-                        </div>
                         
-                    <h2 id="timeTable">Your Weekly Timetable</h2>
-                    <div id="timeTable">
-                        <div class="day" id="Monday"><h3>Monday</h3></div>
-                        <div class="day" id="Tuesday"><h3>Tuesday</h3></div>
-                        <div class="day" id="Wednesday"><h3>Wednesday</h3></div>
-                        <div class="day" id="Thursday"><h3>Thursday</h3></div>
-                        <div class="day" id="Friday"><h3>Friday</h3></div>
-                    </div>
+                    <!-- Adding Course and Time -->
+                        <div id="addedCourses">
+                             <h3 class="addedCoursesTitle">Added Courses</h3>
+                        </div>
+
+                        <div id="addedTimeDay">
+                            
+                        </div>
+
+                    <!--<h2 id="timeTable">Your Weekly Timetable</h2>-->
+                    <!--<div id="timeTable">-->
+                    <!--    <div class="day" id="Time"><h3>Time</h3></div>-->
+                    <!--    <div class="day" id="Monday"><h3>Monday</h3></div>-->
+                    <!--    <div class="day" id="Tuesday"><h3>Tuesday</h3></div>-->
+                    <!--    <div class="day" id="Wednesday"><h3>Wednesday</h3></div>-->
+                    <!--    <div class="day" id="Thursday"><h3>Thursday</h3></div>-->
+                    <!--    <div class="day" id="Friday"><h3>Friday</h3></div>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
 
         <!-- Move the script tag here -->
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
     </body>
 </html>
