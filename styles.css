@@ -32,6 +32,7 @@ body {
 h1 {
     text-align: center;
 }
+
 button {
     background-color: rgba(255, 0, 0, 0.842);
     color: white;
@@ -109,6 +110,13 @@ button:hover {
 
 .main-body {
     padding: 20px; 
+
+}
+
+.main-body input:focus {
+    outline: none;
+    border: 2px solid #9aa3bd;
+    box-shadow: 0 0 10px #9aa3bd;
 }
 
 .courseTimeDay {

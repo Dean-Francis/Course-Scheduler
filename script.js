@@ -1,47 +1,11 @@
-// We add a listener to determine whether DOMContentLoaded loads properly.
-// Then we load a function grabbing a reference to the document, it does not store a copy of the element it is the actual reference to the DOM value
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+    // Declare the global courses array
+    let courses = JSON.parse(localStorage.getItem("courses")) || [];
     const form = document.getElementById("addCourseForm");
     const addedCoursesContainer = document.getElementById("addedCourses");
-    const addedTimeDayContainer = document.getElementById("addedTimeDay");
 
-    const prerequisite = {
-        // Semester 2
-        "LNG 182": ["LNG 181"],
-        "BCS 102": ["BCS 101"],
-        "MTH 113": ["MTH 112"],
-        "ENT 142": ["ENT 141"],
-        // Semester 3
-        "MTH 114": ["MTH 112"],
-        "MTH 130": ["MTH 112"],
-        "MTH 203": ["MTH 112", "BCS 102"],
-        "ENT 241": ["ENT 142"],
-        // Semester 4
-        "ENG 210": ["BCS 202, ENG 101"],
-        "BCS 203": ["BCS 201", "BCS 202"],
-        "BCS 206": ["BCS 202", "MTH 203"],
-        "BCS 221": ["BCS 102"],
-        "BCS 222": ["BCS 201", "BCS 202"],
-        "ENT 242": ["ENT 241"],
-        // Semester 5
-        "BCS 301": ["BCS 206", "ENG 210"],
-        "BCS 303": ["BCS 221"],
-        "BCS 304": ["BCS 202", "MTH 114", "MTH 130", "MTH 203"],
-        "BCS 311": ["BCS 102", "MTH 114"],
-        // Semester 6
-        "BCS 305": ["BCS 203", "BCS 206"],
-        "BCS 306": ["BCS 201", "BCS 202"],
-        "BCS 307": ["ENG 210"],
-        "BCS 309": ["BCS 201", "BCS 206"],
-        "BCS 323": ["BCS 102"],
-        // Semester 7
-        "BCS 402": ["BCS 203", "BCS 309"],
-        // Semester 8
-        "BCS 403": ["BCS 206", "BCS 306"],
-        "BCS 405": ["BCS 206", "BCS 222"],
-    }
-
-    form.addEventListener("submit", function(event) {
+    // Add a new course
+    form.addEventListener("submit", function (event) {
         event.preventDefault();
 
         // Retrieve the values from the form
@@ -52,24 +16,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Validate form inputs
         if (courseName && courseCode && courseInstructor && creditHours) {
-            // Create a new container for the course
+            // Add the new course to the global courses array
+            courses.push({
+                courseName,
+                courseCode,
+                courseInstructor,
+                creditHours,
+                timings: [] // Initialize timings as an empty array
+            });
+
+            // Save the updated array back to localStorage
+            localStorage.setItem("courses", JSON.stringify(courses));
+
+            // Reload the courses to reflect the changes
+            loadCourses();
+
+            // Clear the form after submission
+            form.reset();
+        } else {
+            alert("Please fill out all fields before submitting.");
+        }
+    });
+
+    // Load and display courses
+    function loadCourses() {
+        // Update the global courses array from localStorage
+        courses = JSON.parse(localStorage.getItem("courses")) || [];
+
+        // Clear the existing courses in the UI
+        addedCoursesContainer.innerHTML = "";
+
+        // Loop through the courses and add them to the UI
+        courses.forEach((course, index) => {
             const courseSection = document.createElement("div");
             courseSection.classList.add("course-section");
 
-            // Add course details and a form for timing and day
             courseSection.innerHTML = `
-                <h4>${courseName}</h4>
-                <p>Course Code: ${courseCode}</p>
-                <p>Instructor: ${courseInstructor}</p>
-                <p>Credit Hours: ${creditHours}</p>
+                <h4>${course.courseName}</h4>
+                <p>Course Code: ${course.courseCode}</p>
+                <p>Instructor: ${course.courseInstructor}</p>
+                <p>Credit Hours: ${course.creditHours}</p>
                 <div class="courseTimeDay">
                     <form class="timeDayForm">
                         <label for="courseTime">From:</label>
-                        <input type="time" id="from" name="courseTime" required>
+                        <input type="time" id="from-${index}" name="courseTime" required>
                         <label for="courseTime">To:</label>
-                        <input type="time" id="to" name="courseTime" required>
+                        <input type="time" id="to-${index}" name="courseTime" required>
                         <label for="courseDay">Day:</label>
-                        <select id="courseDay" name="courseDay" required>
+                        <select id="courseDay-${index}" name="courseDay" required>
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
                             <option value="Wednesday">Wednesday</option>
@@ -80,22 +74,36 @@ document.addEventListener("DOMContentLoaded", function() {
                     </form>
                     <div class="timeDayList">
                         <h5>Added Timings:</h5>
-                        <ul></ul>
+                        <ul>
+                            ${(course.timings || [])
+                                .map(
+                                    (timing) =>
+                                        `<li>Timing: ${timing.fromTime} - ${timing.toTime}, Day: ${timing.courseDay}</li>`
+                                )
+                                .join("")}
+                        </ul>
                     </div>
                 </div>
                 <button class="removeCourse">Remove Course</button>
             `;
 
-            // Append the new container to the added courses container
+            // Append the course section to the container
             addedCoursesContainer.appendChild(courseSection);
 
-            // Add a click event listener to the remove course button
+            // Add event listener to the "Remove Course" button
             const removeCourseButton = courseSection.querySelector(".removeCourse");
-            removeCourseButton.addEventListener("click", function() {
-                addedCoursesContainer.removeChild(courseSection);
+            removeCourseButton.addEventListener("click", function () {
+                // Remove the course from the global courses array
+                courses.splice(index, 1);
+
+                // Update localStorage to reflect the removal
+                localStorage.setItem("courses", JSON.stringify(courses));
+
+                // Reload the courses to reflect the changes in the UI
+                loadCourses();
             });
 
-            // Add event listener to the "Add Time & Day" button
+            // Add event listener to the "Add Timings" form
             const timeDayForm = courseSection.querySelector(".timeDayForm");
             const timeDayList = courseSection.querySelector(".timeDayList ul");
 
@@ -103,44 +111,33 @@ document.addEventListener("DOMContentLoaded", function() {
                 event.preventDefault();
 
                 // Retrieve the timing and day values
-                const fromTime = courseSection.querySelector("#from").value.trim();
-                const toTime = courseSection.querySelector("#to").value.trim();
-                const courseDay = courseSection.querySelector("#courseDay").value.trim();
+                const fromTime = document.getElementById(`from-${index}`).value.trim();
+                const toTime = document.getElementById(`to-${index}`).value.trim();
+                const courseDay = document.getElementById(`courseDay-${index}`).value.trim();
 
                 // Validate the inputs
                 if (fromTime && toTime && courseDay) {
-                    // Create a new list item
-                    const listItem = document.createElement("li");
-                    listItem.textContent = `Timing: ${fromTime} - ${toTime}, Day: ${courseDay}`;
+                    // Add the timing to the course
+                    courses[index].timings = courses[index].timings || [];
+                    courses[index].timings.push({ fromTime, toTime, courseDay });
 
-                    // Create a "Remove Timing" button
-                    const removeButton = document.createElement("button");
-                    removeButton.textContent = "Remove Timing";
-                    removeButton.classList.add("removeTiming");
+                    // Save the updated courses to localStorage
+                    localStorage.setItem("courses", JSON.stringify(courses));
 
-                    // Append the button to the list item
-                    listItem.appendChild(removeButton);
+                    // Dynamically update the timings list in the UI
+                    const newTiming = document.createElement("li");
+                    newTiming.textContent = `Timing: ${fromTime} - ${toTime}, Day: ${courseDay}`;
+                    timeDayList.appendChild(newTiming);
 
-                    // Append the list item to the list
-                    timeDayList.appendChild(listItem);
-
-                    // Add event listener to the "Remove Timing" button
-                    removeButton.addEventListener("click", function () {
-                        timeDayList.removeChild(listItem);
-                    });
-
-                    // Clear the input fields for the next entry
+                    // Clear the form fields
                     timeDayForm.reset();
                 } else {
                     alert("Please fill out the timing and day fields.");
                 }
             });
+        });
+    }
 
-            // Clear the form after submission
-            form.reset();
-        } else {
-            // Show an alert if any field is missing
-            alert("Please fill out all fields before submitting.");
-        }
-    });
+    // Load courses on page load
+    loadCourses();
 });
